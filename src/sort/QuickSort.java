@@ -7,22 +7,17 @@ import java.util.Scanner;
  */
 public class QuickSort {
 
-
     public char[] sortChar(char[] chars){
 
         int i = 0,j = chars.length-1;
         while(i < j){
-
             if( (chars[j] >= 'a' && chars[j] <= 'z' )  && chars[i] >= 'A' && chars[i] <= 'Z'){
-
                 char temp = chars[i];
                 chars[i] = chars[j];
                 chars[j] = temp;
-
             }
             i++;
             j--;
-
         }
         return chars;
 
@@ -82,19 +77,6 @@ public class QuickSort {
 
     public static void main(String[] args) {
 
-//        char[] c = new QuickSort().sortChar(new char[]{'D','a','F','B','c','A','z'});
-//        for (char ch : c) {
-//            System.out.print(ch + " ");
-//        }
-        int[] nums = new int[]{3,2,5,1,6,7,1,2};
-        for (int n : nums) {
-            System.out.print(n + " ");
-        }
-        int k = new Scanner(System.in).nextInt();
-        new QuickSort().random(nums,0,nums.length-1,k);
-        for (int i = 0; i < k; i++) {
-            System.out.print(nums[i] + " ");
-        }
 
     }
 

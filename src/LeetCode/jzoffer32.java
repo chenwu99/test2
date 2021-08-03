@@ -61,4 +61,37 @@ public class jzoffer32 {
 
     }
 
+    /**
+     * 队列里的元素就是每一层的节点数量;
+     * @param root
+     * @return
+     */
+    public List<List<Integer>> levelOrder2(TreeNode root) {
+        List<List<Integer>> list = new LinkedList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        if(root != null){
+            queue.add(root);
+        }
+        while(!queue.isEmpty()){
+            int n = queue.size();
+            LinkedList<Integer> l = new LinkedList<>();
+            for (int i = 0; i < n; i++) {
+                TreeNode node = queue.poll();
+                if(node.left != null){
+                    queue.add(node.left);
+                }
+                if(node.right != null){
+                    queue.add(node.right);
+                }
+                if(list.size() % 2 == 0){
+                    l.addLast(node.val);
+                }else{
+                    l.addFirst(node.val);
+                }
+            }
+            list.add(l);
+        }
+        return list;
+    }
+
 }
