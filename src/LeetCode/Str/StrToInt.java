@@ -10,7 +10,7 @@ import java.util.List;
 public class StrToInt {
 
     /**
-     * 题目主要是超过最大长度int存储值;
+     * 字符串转换整数 (atoi) 题目主要是超过最大长度int存储值;
      * @param s
      * @return
      */

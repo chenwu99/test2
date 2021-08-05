@@ -7,6 +7,36 @@ import java.util.Scanner;
  */
 public class QuickSort {
 
+
+    public int majorityElement(int[] nums) {
+        int start = 0,end = nums.length -1;
+        int position = partion(start,end,nums);
+        int mid = nums.length/2;
+        while(position != mid){
+            if(position < mid){
+                end = position - 1;
+                partion(start,end,nums);
+            }else{
+                start = position + 1;
+                partion(start,end,nums);
+            }
+        }
+        return nums[mid];
+    }
+
+
+
+    public void judge(int p,int r,int[] nums){
+        int position = partion(p,r,nums);
+        if(position == nums.length/2){
+            return ;
+        } else if(position > nums.length/2){
+            judge(p,position-1,nums);
+        }else{
+            judge(position+1,r,nums);
+        }
+    }
+
     public char[] sortChar(char[] chars){
 
         int i = 0,j = chars.length-1;
@@ -21,6 +51,28 @@ public class QuickSort {
         }
         return chars;
 
+    }
+
+    public int[] getLeastNumbers(int[] arr, int k) {
+        if(k == 0 || arr.length == 0){
+            return new int[0];
+        }
+        int[] nums = new int[k];
+        int start = 0,end = arr.length -1;
+        int position = partion(start,end,arr);
+        while(position + 1 != k){
+            if(position + 1 > k){//在左侧;
+                end = position - 1;
+                position = partion(start,end,arr);
+            }else{
+                start = position + 1;
+                position = partion(start,end,arr);
+            }
+        }
+        for (int i = 0; i < k; i++) {
+            nums[i] =arr[i];
+        }
+        return nums;
     }
 
 
