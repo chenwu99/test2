@@ -13,7 +13,6 @@ public class Solution {
      * @return
      */
     public int maxArray(int[] numbers) {
-
         int i = 0, j = numbers.length - 1;
         while (i < j) {
             int m = (i + j) / 2;
@@ -22,57 +21,79 @@ public class Solution {
             else i++;
         }
         return numbers[i];
-
     }
 
+    /**
+     * 旋转数组的最小数字
+     * 输入：[3,4,5,1,2]
+     * 输出：1
+     * @param numbers
+     * @return
+     */
     public int minArray(int[] numbers) {
 
-        int i = 0, j = numbers.length - 1;
-        while (i < j) {
+        int i = 0,j = numbers.length - 1;
+        while(i < j){
             int m = (i + j) / 2;
-            if (numbers[m] > numbers[j]) i = m;
-            else if (numbers[m] < numbers[j]) j = m - 1;
+            if(numbers[m] > numbers[j]) i = m + 1;
+            else if(numbers[m] < numbers[j]) j = m;
             else j--;
         }
         return numbers[i];
-
     }
 
-    public int minArray2(int[] numbers) {
 
-        int i = 0, j = numbers.length - 1;
-        for (int k = 0; k < numbers.length; k++) {
-            if(numbers[k] > numbers[k+1]){
-                return numbers[k+1];
+    /**
+     * 在排序数组中查找数字 I
+     * 输入: nums = [5,7,7,8,8,10], target = 8
+     * 输出: 2
+     * @param nums
+     * @param target
+     * @return
+     */
+        public int search(int[] nums, int target) {
+            // 搜索右边界 right
+            int i = 0, j = nums.length - 1;
+            while(i <= j) {
+                int m = (i + j) / 2;
+                if(nums[m] <= target) i = m + 1;
+                else j = m - 1;
             }
+            int right = i;
+            // 若数组中无 target ，则提前返回
+            if(j >= 0 && nums[j] != target) return 0;
+            // 搜索左边界 right
+            i = 0;
+            while(i <= j) {
+                int m = (i + j) / 2;
+                if(nums[m] < target) i = m + 1;
+                else j = m - 1;
+            }
+            int left = i;
+            return right - left ;
         }
-        return numbers[0];
 
-    }
-
-//    3 4 5 1 2
-//    1 2 3 4 5
-//    5 4 3 2 1
-
-    public int maxNum(int[] nums){
-
-        int i = 0, j = nums.length - 1;
-        while(i < j){
-
-            int m = (i + j) / 2;
-            if(nums[m] > j) i = m;
-            else if(nums[m] < j) j = m;
-            else i++;
-
+    /**
+     *  0～n-1中缺失的数字
+     * @param nums
+     * @return
+     */
+    public int missingNumber(int[] nums) {
+            int i = 0, j = nums.length - 1;
+            while(i <= j) {
+                int m = (i + j) / 2;
+                if(nums[m] == m) i = m + 1;
+                else j = m - 1;
+            }
+            return i;
         }
-        return 0;
 
-    }
+
 
 
     public static void main(String[] args) {
-        int[] a = {2,2,2,0,1};
-        System.out.println(new Solution().maxArray(a));
+        int[] a = {5,7,7,8,8,10};
+        System.out.println(new Solution().search(a,8));
     }
 
 }

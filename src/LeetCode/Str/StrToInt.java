@@ -42,7 +42,7 @@ public class StrToInt {
             if (res < Integer.MIN_VALUE / 10 || (res == Integer.MIN_VALUE / 10 && ( c[index] - '0') > -(Integer.MIN_VALUE % 10))) {
                 return Integer.MIN_VALUE;
             }
-            res = res * 10 +sign * (c[index] - '0');
+            res = res * 10 + sign * (c[index] - '0');
             index++;
 
         }
